@@ -1,9 +1,20 @@
 #! /bin/sh
+#
+# Buildroot/SysV init 风格的开机自启脚本（由 CMakeLists.txt 安装到开发板的 /etc/init.d/）。
+# 文件名前缀 S11 是启动顺序号：init 进程开机时按字母序执行 /etc/init.d/S* 脚本，
+# 数字越小越早执行；S11 表示在系统基础服务（S01~S10）起来之后、较早地启动本演示程序。
+# 类比裸机：相当于 main() 里 while(1) 之前自动调用的一次初始化/启动动作。
+#
+# 本脚本只实现 start（开机场景够用）；如需手动停止程序，可用 killall myproject。
 
 start() {
+	# 直接以后台方式（结尾的 &）启动 LVGL 演示程序，不能阻塞，
+	# 否则后续启动脚本和开机流程都会被卡住。
+	# 可执行文件 myproject 已由 CMake 安装到 /usr/bin，PATH 中可直接找到。
 	myproject &
 }
 
+# init 调用本脚本时通过 $1 传入动作（start/stop/restart...），这里只处理 start
 case "$1" in
   start)
 	start

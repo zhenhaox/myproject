@@ -1,3 +1,10 @@
+/**
+ * @file main.h
+ * @brief main.c 的配套头文件：集中包含程序所需的标准 C / POSIX 系统头文件
+ *        （文件 IO、poll、pthread、mmap、ioctl 等 Linux 系统调用相关），
+ *        并提供通用的地址对齐宏 ALIGN。
+ */
+
 #ifndef __MAIN_H__
 #define __MAIN_H__
 
@@ -24,9 +31,10 @@
 
 #include <lvgl/lvgl.h>
 
-#include "lv_port_init.h"
-#include "timestamp.h"
+#include "lv_port_init.h"   // LVGL 显示（DRM/KMS）+ 触摸（evdev）移植层初始化接口
+#include "timestamp.h"      // 时间戳工具函数
 
+// 把 x 向上对齐到 a 的整数倍（a 必须是 2 的幂），帧缓冲/内存地址对齐常用
 #define ALIGN(x, a)     (((x) + (a - 1)) & ~(a - 1))
 
 #endif

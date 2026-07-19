@@ -14,11 +14,34 @@
 extern "C" {
 #endif
 
+/**
+ * @file events_init.h
+ * @brief 界面事件注册接口：为各 screen 的控件挂接事件回调
+ *
+ * 与 GUI Guider 生成的 events_init 对应：每个 screen 一个 events_init_xxx()
+ * 函数，在 setup_scr_xxx() 创建完控件后调用，完成事件回调的绑定。
+ */
+
 #include "gui_guider.h"
 
+/**
+ * @brief 全局事件初始化入口（GUI Guider 保留接口，本项目为空实现）
+ * @param ui 全局 UI 结构体指针
+ */
 void events_init(lv_ui *ui);
 
+/**
+ * @brief 为主界面 screen 的控件注册事件回调
+ * @param ui 全局 UI 结构体指针
+ * @note  在 setup_scr_screen() 中控件创建完成后调用
+ */
 void events_init_screen(lv_ui *ui);
+
+/**
+ * @brief 为蓝牙扫描页 screen_1 的控件注册事件回调
+ * @param ui 全局 UI 结构体指针
+ * @note  在 setup_scr_screen_1() 中控件创建完成后调用
+ */
 void events_init_screen_1(lv_ui *ui);
 
 #ifdef __cplusplus
