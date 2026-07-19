@@ -1,0 +1,16 @@
+#! /bin/sh
+
+start() {
+	02_lvgl_button_led &
+}
+
+case "$1" in
+  start)
+	start
+	;;
+  *)
+	echo "Usage: $0 {start}"
+	exit 1
+esac
+
+exit $?

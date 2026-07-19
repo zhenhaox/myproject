@@ -1,0 +1,19 @@
+# 编译产物
+build/
+output/
+*.o
+*.a
+*.so
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+
+# 临时文件
+*.swp
+*~
+.DS_Store
+.agents/
+
+# 如果 lvgl8 是官方库，可以考虑忽略（但正点原子可能改过）
+# lvgl8/
